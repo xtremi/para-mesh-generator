@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\MeshGenerator">
+      <UniqueIdentifier>{aaaf3285-c72c-4d25-91f3-81f554a7c138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mesh">
+      <UniqueIdentifier>{59047247-220c-450e-b382-6aae905a0e71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MeshGenerator">
+      <UniqueIdentifier>{4826fff2-cb49-47d5-9af8-0d6ee5f5cc2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mesh">
+      <UniqueIdentifier>{c5ea3094-099b-4a98-ae6e-14a462c6f665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mesh\Refinement">
+      <UniqueIdentifier>{be198ec8-58b9-4397-9b92-4904b295cd7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mesh\Refinement">
+      <UniqueIdentifier>{c5b0a078-ecdd-41cd-81d6-29ef67afc3c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Mesh\Geometry">
+      <UniqueIdentifier>{79fb9802-f222-4f1f-9533-d7bb662c80b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mesh\Geometry">
+      <UniqueIdentifier>{e4fde8bf-d556-4239-aec1-09be330a26d1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="para-mesh-generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh_types.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="string_utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FeaWrite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CBeam3DMeshGenerator.cpp">
+      <Filter>Source Files\MeshGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="CylinderBeam3DMeshGenerator.cpp">
+      <Filter>Source Files\MeshGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="IBeam3DMeshGenerator.cpp">
+      <Filter>Source Files\MeshGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshGenerator.cpp">
+      <Filter>Source Files\MeshGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="PipeBeam3DMeshGenerator.cpp">
+      <Filter>Source Files\MeshGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshPrimitive.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="HoledPlate3DMeshGenerator.cpp">
+      <Filter>Source Files\MeshGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh2DPlate.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Plate2DMeshGenerator.cpp">
+      <Filter>Source Files\MeshGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimitiveMeshGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh2D.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh2DPlateRefSide.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3D.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="math_utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh2DRectangle.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3DCuboidRefFace.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3DCuboid.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRefinement.cpp">
+      <Filter>Source Files\Mesh\Refinement</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshSideRefinement.cpp">
+      <Filter>Source Files\Mesh\Refinement</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshWrite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshSideRefinement2D.cpp">
+      <Filter>Source Files\Mesh\Refinement</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshSideRefinement3D.cpp">
+      <Filter>Source Files\Mesh\Refinement</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3DTubeRefFace.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3DCube.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshCircularRefinement.cpp">
+      <Filter>Source Files\Mesh\Refinement</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshCircularRefinement2D.cpp">
+      <Filter>Source Files\Mesh\Refinement</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshCircularRefinement3D.cpp">
+      <Filter>Source Files\Mesh\Refinement</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3DTubular.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3DPipe.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh2DPipe.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh2DTubular.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3DElipsToRec.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="PipeGeometry2D.cpp">
+      <Filter>Source Files\Mesh\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PipeGeometry3D.cpp">
+      <Filter>Source Files\Mesh\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Source Files\Mesh\Geometry</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mesh_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="error_codes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="string_utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FeaWrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CBeam3DMeshGenerator.h">
+      <Filter>Header Files\MeshGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="CylinderBeam3DMeshGenerator.h">
+      <Filter>Header Files\MeshGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="IBeam3DMeshGenerator.h">
+      <Filter>Header Files\MeshGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="PipeBeam3DMeshGenerator.h">
+      <Filter>Header Files\MeshGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshPrimitive.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshGenerator.h">
+      <Filter>Header Files\MeshGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh2DPlate.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Plate2DMeshGenerator.h">
+      <Filter>Header Files\MeshGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="HoledPlate3DMeshGenerator.h">
+      <Filter>Header Files\MeshGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveMeshGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh2D.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh2DPlateRefSide.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3D.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="math_utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh2DRectangle.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3DCuboidRefFace.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3DCuboid.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRefinement.h">
+      <Filter>Header Files\Mesh\Refinement</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshSideRefinement.h">
+      <Filter>Header Files\Mesh\Refinement</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshWrite.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshSideRefinement2D.h">
+      <Filter>Header Files\Mesh\Refinement</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshSideRefinement3D.h">
+      <Filter>Header Files\Mesh\Refinement</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3DTubeRefFace.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3DCube.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCircularRefinement3D.h">
+      <Filter>Header Files\Mesh\Refinement</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCircularRefinement.h">
+      <Filter>Header Files\Mesh\Refinement</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCircularRefinement2D.h">
+      <Filter>Header Files\Mesh\Refinement</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3DTubular.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3DPipe.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh2DPipe.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh2DTubular.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3DElipsToRec.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="PipeGeometry3D.h">
+      <Filter>Header Files\Mesh\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PipeGeometry2D.h">
+      <Filter>Header Files\Mesh\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Header Files\Mesh\Geometry</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

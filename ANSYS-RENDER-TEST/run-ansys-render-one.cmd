@@ -1,0 +1,1 @@
+"D:\Program Files\ANSYS Inc\v190\ansys\bin\winx64\ANSYS190.exe" -dir "D:\VS2017_Projects\para-mesh-generator\ANSYS-RENDER-TEST\ansys-dir" -i "D:\VS2017_Projects\para-mesh-generator\ANSYS-RENDER-TEST\ansys-render-one.dat"
