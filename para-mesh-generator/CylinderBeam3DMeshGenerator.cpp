@@ -1,7 +1,9 @@
 #pragma once
 #include "CylinderBeam3DMeshGenerator.h"
 
-CylinderBeam3DMeshGenerator::CylinderBeam3DMeshGenerator() {
+CylinderBeam3DMeshGenerator::CylinderBeam3DMeshGenerator(const std::string& _filepath, format_type _format)
+	: MeshGenerator(_filepath, _format)
+{
 	valid_parameters = { "h", "ri", "ro", "elsize" };
 	param_values = { &h,  &ri,  &ro,  &elsize };
 }
@@ -24,11 +26,11 @@ int CylinderBeam3DMeshGenerator::calculateInitalVariables() {
 	return 0;
 }
 
-void CylinderBeam3DMeshGenerator::writeConnectionElements(std::ofstream& file) {
+void CylinderBeam3DMeshGenerator::writeConnectionElements() {
 
 	Mesh3DTubular*		pipe  = (Mesh3DTubular*)nodeRegions[0];
 	Mesh3DTubular*		elRec = (Mesh3DTubular*)nodeRegions[1];
 
 	int elID = nodeRegions[1]->numberOfElements() + nodeRegions[1]->firstElementID();
-	createElementsBetweenTube(file, pipe, elRec, elID, format);
+	createElementsBetweenTube(feaWriter, pipe, elRec, elID);
 }

@@ -6,7 +6,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include "MeshWrite.h"
+#include "FEAwrite.h"
 #include "string_utilities.h"
 #include "math_utilities.h"
 #include "glm/glm.hpp"
@@ -16,8 +16,8 @@ class MeshPrimitive {
 public:
 	MeshPrimitive(const glm::dvec3& _pos) { pos = _pos; }
 
-	virtual void writeNodes(std::ofstream& file, format_type format) = 0;
-	virtual void writeElements(std::ofstream& file, format_type format) = 0;
+	virtual void writeNodes(FEAwriter* writer) = 0;
+	virtual void writeElements(FEAwriter* writer) = 0;
 	virtual int numberOfNodes() = 0;
 	virtual int numberOfElements() = 0;
 

@@ -55,16 +55,16 @@ glm::dvec3 Mesh2DPlate::getCoords(int ix, int iy) {
 	coords.z = zs[iy];
 	return coords;
 }
-void Mesh2DPlate::writeNodes(std::ofstream& file, format_type format) {
+void Mesh2DPlate::writeNodes(FEAwriter* feaWriter) {
 	int nodeID = nodeID1;
 	for (int ix = 0; ix < nnodes.x; ix++) {
 		for (int iy = 0; iy < nnodes.y; iy++) {
 			glm::dvec3 c = getCoords(ix, iy);
-			writeNode(file, nodeID++, c, format);
+			feaWriter->writeNode(nodeID++, c);
 		}
 	}
 }
-void Mesh2DPlate::writeElements(std::ofstream& file, format_type format) {
+void Mesh2DPlate::writeElements(FEAwriter* feaWriter) {
 	int n[4];
 	int c = nodeID1;
 	int elID = elementID1;
@@ -78,7 +78,7 @@ void Mesh2DPlate::writeElements(std::ofstream& file, format_type format) {
 			n[3] = c + nnodes.y;
 			
 			c++;
-			write4nodedShell(file, elID++, n, format);
+			feaWriter->write4nodedShell(elID++, n);
 			if (false && (elID > (20))) {
 				stop = true;
 				break;

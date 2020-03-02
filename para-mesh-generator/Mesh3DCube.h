@@ -1,6 +1,5 @@
 #pragma once
 #include "Mesh3DCuboid.h"
-#include "FeaWrite.h"
 #include <vector>
 
 class Mesh3DCube 
@@ -14,8 +13,8 @@ public:
 	Mesh3DCube(const Mesh3DCube& rhs);
 
 	glm::dvec3 getCoords(int ix, int iy, int iz);
-	void writeNodes(std::ofstream& file, format_type format);
-	void writeElements(std::ofstream& file, format_type format);
+	void writeNodes(FEAwriter* feaWriter);
+	void writeElements(FEAwriter* feaWriter);
 
 	int numberOfNodes();
 	int numberOfElements();
@@ -62,8 +61,7 @@ private:
 };
 
 int createElementsBetweenCubes(
-	std::ofstream& file,
+	FEAwriter* feaWriter,
 	Mesh3DCube* mc1, Mesh3DCube* mc2,
 	Mesh3DCube::edge edg1, Mesh3DCube::edge edg2,
-	bool dir1, bool dir2, int elStartID,
-	format_type format);
+	bool dir1, bool dir2, int elStartID);

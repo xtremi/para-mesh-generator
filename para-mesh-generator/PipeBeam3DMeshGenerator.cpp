@@ -1,5 +1,7 @@
 #include "PipeBeam3DMeshGenerator.h"
-PipeBeam3DMeshGenerator::PipeBeam3DMeshGenerator(){
+PipeBeam3DMeshGenerator::PipeBeam3DMeshGenerator(const std::string& _filepath, format_type _format)
+	: MeshGenerator(_filepath, _format) 
+{
 	valid_parameters = { "h", "ri", "ro", "elsize" };
 	param_values = { &h,  &ri,  &ro,  &elsize };
 }
@@ -19,6 +21,6 @@ int PipeBeam3DMeshGenerator::calculateInitalVariables() {
 	return 0;
 }
 
-void PipeBeam3DMeshGenerator::writeConnectionElements(std::ofstream& file) {
+void PipeBeam3DMeshGenerator::writeConnectionElements() {
 
 }

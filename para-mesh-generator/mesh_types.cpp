@@ -1,7 +1,7 @@
 #pragma once
 #include "mesh_types.h"
 
-const int NUMBER_OF_FORMAT_TYPE = 3;
+const int NUMBER_OF_FORMAT_TYPE = 4;
 const int NUMBER_OF_MESH_TYPES = 9;
 const int NUMBER_MESH_PRIMITIVE_TYPES = 9;
 
@@ -21,7 +21,8 @@ const std::string primitive_mesh_type_names[] =
 const std::string format_type_names[NUMBER_OF_FORMAT_TYPE] =
 {	"ANSYS",
 	"NASTRAN",
-	"ABAQUS"
+	"ABAQUS",
+	"VTK"
 };
 
 const std::string mesh_type_names[NUMBER_OF_MESH_TYPES] = 
@@ -52,7 +53,8 @@ const std::map<std::string, primitive_mesh_type> primitive_mesh_type_map = {
 const std::map<std::string, format_type> format_type_map = {
 	{"ANSYS",	format_type::ANSYS},
 	{"NASTRAN",	format_type::NASTRAN},
-	{"ABAQUS",	format_type::ABAQUS}
+	{"ABAQUS",	format_type::ABAQUS},
+	{"VTK",		format_type::VTK}
 };
 
 const std::map<std::string, mesh_type> mesh_type_map = {

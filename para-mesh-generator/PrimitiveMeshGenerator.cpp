@@ -2,7 +2,8 @@
 
 
 
-PrimitiveMeshGenerator::PrimitiveMeshGenerator()
+PrimitiveMeshGenerator::PrimitiveMeshGenerator(const std::string& _filepath, format_type _format)
+	: MeshGenerator(_filepath, _format)
 {
 }
 
@@ -48,4 +49,4 @@ int PrimitiveMeshGenerator::generate() {
 	return 0;
 }
 
-void PrimitiveMeshGenerator::writeConnectionElements(std::ofstream& file){}
+void PrimitiveMeshGenerator::writeConnectionElements(){}

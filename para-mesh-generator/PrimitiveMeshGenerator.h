@@ -14,12 +14,12 @@ class PrimitiveMeshGenerator :
 	public MeshGenerator
 {
 public:
-	PrimitiveMeshGenerator();
+	PrimitiveMeshGenerator(const std::string& _filepath, format_type _format);
 	int processInputParameters(const std::map<std::string, std::vector<std::string>>& parameters);
 
 	int generate();
 
-	void writeConnectionElements(std::ofstream& file);
+	void writeConnectionElements();
 
 private:
 	primitive_mesh_type primitiveType = primitive_mesh_type::CUBE_3D;

@@ -6,18 +6,18 @@ Mesh2DTubular::Mesh2DTubular(const glm::dvec3& _pos, bool _completeRev)
 	completeRev = _completeRev;
 }
 
-void Mesh2DTubular::writeNodes(std::ofstream& file, format_type format)
+void Mesh2DTubular::writeNodes(FEAwriter* feaWriter)
 {
 	int nodeID = nodeID1;
 	for (int ix = 0; ix < nnodes.x; ix++) {
 		for (int iphi = 0; iphi < nnodes.y; iphi++) {
 			glm::dvec3 c = getCoords(ix, iphi);
-			writeNode(file, nodeID++, c, format);
+			feaWriter->writeNode(nodeID++, c);
 		}
 	}	
 }
 
-void Mesh2DTubular::writeElements(std::ofstream& file, format_type format)
+void Mesh2DTubular::writeElements(FEAwriter* feaWriter)
 {
 	int n[4];
 	int c = nodeID1;
@@ -40,7 +40,7 @@ void Mesh2DTubular::writeElements(std::ofstream& file, format_type format)
 			}
 
 			c++;
-			write4nodedShell(file, elID++, n, format);
+			feaWriter->write4nodedShell(elID++, n);
 		}
 		if (!completeRev)
 			c += 1;

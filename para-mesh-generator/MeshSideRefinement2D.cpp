@@ -8,8 +8,7 @@ MeshSideRefinement2D::MeshSideRefinement2D(const glm::dvec2& size, int _refRows,
 {}
 
 int MeshSideRefinement2D::writeRefinementNodes(
-	std::ofstream&		file,
-	format_type			format,
+	FEAwriter*			feaWriter,
 	const glm::dvec3&	spos,
 	int					nodeIDstart)
 {
@@ -24,14 +23,14 @@ int MeshSideRefinement2D::writeRefinementNodes(
 		nRefinements++;
 
 		//row b:
-		nodeID = writeNodeRowX(file, format, coords, currentElsize, currentNodesPerRow, nodeID);
+		nodeID = feaWriter->writeNodeRowX(coords, currentElsize, currentNodesPerRow, nodeID);
 
 		coords.y += currentElsize * yfac;
 		//row m:
 		for (int i = 0; i < currentNodesPerRow; i++) {
 			coords.x = (double)i*currentElsize;
 			if (i % 4)
-				writeNode(file, nodeID++, coords, format);
+				feaWriter->writeNode(nodeID++, coords);
 		}
 		coords.y += currentElsize * yfac;
 		coords.x = 0.0;
@@ -41,13 +40,13 @@ int MeshSideRefinement2D::writeRefinementNodes(
 		currentElsize = currentRefFactor * elsizeRef;
 
 		//row t:		
-		nodeID = writeNodeRowX(file, format, coords, currentElsize, currentNodesPerRow, nodeID);
+		nodeID = feaWriter->writeNodeRowX(coords, currentElsize, currentNodesPerRow, nodeID);
 		coords.y += currentElsize * yfac;
 	}
 	return nodeID;
 }
 
-int MeshSideRefinement2D::writeRefinementElements(std::ofstream& file, format_type format, int elementID1, int nodeID1)
+int MeshSideRefinement2D::writeRefinementElements(FEAwriter* feaWriter, int elementID1, int nodeID1)
 {
 	int currentRefFactor = 1;
 	int	currentNodesPerRow = nnodesRef;
@@ -61,7 +60,7 @@ int MeshSideRefinement2D::writeRefinementElements(std::ofstream& file, format_ty
 		for (int i = 0; i < (currentNodesPerRow - 1); i++) {
 			n[0] = c++;							n[1] = n[0] + 1;
 			n[2] = n[1] + currentNodesPerRow;	n[3] = n[2] - 1;
-			write4nodedShell(file, elID++, n, format);
+			feaWriter->write4nodedShell(elID++, n);
 		}
 		c++;
 		//elRow m + t 
@@ -85,7 +84,7 @@ int MeshSideRefinement2D::writeRefinementElements(std::ofstream& file, format_ty
 			int n6[4] = { m[1], m[2], t[2], t[1] }; elNodes.push_back(n6);
 
 			for (int i = 0; i < 6; i++)
-				write4nodedShell(file, elID++, elNodes[i], format);
+				feaWriter->write4nodedShell(elID++, elNodes[i]);
 			c += 4;
 		}
 

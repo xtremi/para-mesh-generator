@@ -2,7 +2,7 @@
 #include "math_utilities.h"
 #include "glm/glm.hpp"
 #include "math.h"
-#include "MeshWrite.h"
+#include "FEAwrite.h"
 
 class MeshRefinement
 {
@@ -14,6 +14,6 @@ protected:
 	double	elsizeNorm;
 	int		nRefinements = 0;
 
-	virtual int writeRefinementNodes(std::ofstream& file, format_type format, const glm::dvec3& spos, int nodeIDstart) = 0;
+	virtual int writeRefinementNodes(FEAwriter* feaWriter, const glm::dvec3& spos, int nodeIDstart) = 0;
 };
 

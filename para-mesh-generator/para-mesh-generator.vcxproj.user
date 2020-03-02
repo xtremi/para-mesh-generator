@@ -3,6 +3,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerWorkingDirectory>$(OutDir)</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>--mesh PRIMITIVE -p PLATE_2D_REF_SIDE --out plateRef2D_1.dat --format ANSYS</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--mesh PRIMITIVE -p PLATE_2D_REF_SIDE --out plateRef2D_1.inp --format ANSYS</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LocalDebuggerWorkingDirectory>$(OutDir)</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>--mesh PRIMITIVE -p PLATE_2D_REF_SIDE --out plateRef2D_1.dat --format VTK</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

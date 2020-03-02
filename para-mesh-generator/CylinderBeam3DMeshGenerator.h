@@ -7,7 +7,7 @@ class CylinderBeam3DMeshGenerator :
 	public MeshGenerator
 {
 public:
-	CylinderBeam3DMeshGenerator();
+	CylinderBeam3DMeshGenerator(const std::string& _filepath, format_type _format);
 	~CylinderBeam3DMeshGenerator();
 
 	int generate();
@@ -19,6 +19,6 @@ private:
 
 	int calculateInitalVariables();
 
-	void writeConnectionElements(std::ofstream& file);
+	void writeConnectionElements();
 };
 

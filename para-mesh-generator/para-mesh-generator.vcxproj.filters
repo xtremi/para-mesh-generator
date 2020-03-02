@@ -78,9 +78,6 @@
     <ClCompile Include="Plate2DMeshGenerator.cpp">
       <Filter>Source Files\MeshGenerator</Filter>
     </ClCompile>
-    <ClCompile Include="PrimitiveMeshGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh2D.cpp">
       <Filter>Source Files\Mesh</Filter>
     </ClCompile>
@@ -107,9 +104,6 @@
     </ClCompile>
     <ClCompile Include="MeshSideRefinement.cpp">
       <Filter>Source Files\Mesh\Refinement</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshWrite.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MeshSideRefinement2D.cpp">
       <Filter>Source Files\Mesh\Refinement</Filter>
@@ -156,6 +150,9 @@
     <ClCompile Include="Geometry.cpp">
       <Filter>Source Files\Mesh\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="PrimitiveMeshGenerator.cpp">
+      <Filter>Source Files\MeshGenerator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mesh_types.h">
@@ -197,9 +194,6 @@
     <ClInclude Include="HoledPlate3DMeshGenerator.h">
       <Filter>Header Files\MeshGenerator</Filter>
     </ClInclude>
-    <ClInclude Include="PrimitiveMeshGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh2D.h">
       <Filter>Header Files\Mesh</Filter>
     </ClInclude>
@@ -226,9 +220,6 @@
     </ClInclude>
     <ClInclude Include="MeshSideRefinement.h">
       <Filter>Header Files\Mesh\Refinement</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshWrite.h">
-      <Filter>Header Files\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="MeshSideRefinement2D.h">
       <Filter>Header Files\Mesh\Refinement</Filter>
@@ -274,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="Geometry.h">
       <Filter>Header Files\Mesh\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveMeshGenerator.h">
+      <Filter>Header Files\MeshGenerator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

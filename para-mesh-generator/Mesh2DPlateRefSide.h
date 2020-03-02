@@ -9,8 +9,8 @@ public:
 	Mesh2DPlateRefSide(const glm::dvec3& _pos, const glm::dvec2& _length, double _elsizeRef, double _elSizeNorm, int _refRows);
 	Mesh2DPlateRefSide(const glm::dvec3& _pos, const glm::dvec2& _length, int    _refFactor, double _elSizeNorm, int _refRows);
 
-	void writeNodes(std::ofstream& file, format_type format);
-	void writeElements(std::ofstream& file, format_type format);
+	void writeNodes(FEAwriter* feaWriter);
+	void writeElements(FEAwriter* feaWriter);
 
 	int numberOfNodes();
 	int numberOfElements();

@@ -1,6 +1,7 @@
 #include "Plate2DMeshGenerator.h"
 
-Plate2DMeshGenerator::Plate2DMeshGenerator()
+Plate2DMeshGenerator::Plate2DMeshGenerator(const std::string& _filepath, format_type _format)
+	: MeshGenerator(_filepath, _format) 
 {
 	valid_parameters = { "w", "h", "A", "freq", "elsize" };
 	param_values = { &w, &h, &A, &freq, &elsize };
@@ -16,4 +17,4 @@ int Plate2DMeshGenerator::calculateInitalVariables() {
 	return 0;
 }
 
-void Plate2DMeshGenerator::writeConnectionElements(std::ofstream& file) {}
+void Plate2DMeshGenerator::writeConnectionElements() {}

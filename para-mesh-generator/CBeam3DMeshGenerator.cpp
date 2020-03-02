@@ -2,8 +2,8 @@
 
 
 
-CBeam3DMeshGenerator::CBeam3DMeshGenerator() 
-	: MeshGenerator()
+CBeam3DMeshGenerator::CBeam3DMeshGenerator(const std::string& _filepath, format_type _format)
+	: MeshGenerator(_filepath, _format)
 {
 	valid_parameters = { "h", "w_top", "w_bot", "t_top", "t_bot", "t_mid", "r", "l", "elsize" };
 	param_values = { &h,  &w_top,  &w_bot,  &t_top,  &t_bot,  &t_mid,  &r,  &l,  &elsize };
@@ -65,7 +65,7 @@ int CBeam3DMeshGenerator::generate()
  |_______| |__________|
 
 */
-void CBeam3DMeshGenerator::writeConnectionElements(std::ofstream& file) 
+void CBeam3DMeshGenerator::writeConnectionElements() 
 {
 	Mesh3DCube* w1  = (Mesh3DCube*)nodeRegions[0];
 	Mesh3DCube* ft1 = (Mesh3DCube*)nodeRegions[1];
@@ -75,24 +75,24 @@ void CBeam3DMeshGenerator::writeConnectionElements(std::ofstream& file)
 
 	int elID = nodeRegions[4]->numberOfElements() + nodeRegions[4]->firstElementID();
 
-	elID = createElementsBetweenCubes(file, ft2, ft1, Mesh3DCube::edge::edge67, Mesh3DCube::edge::edge58, false, false, elID, format);
-	elID = createElementsBetweenCubes(file, fb2, fb1, Mesh3DCube::edge::edge23, Mesh3DCube::edge::edge14, true, true, elID, format);
-
-	elID = createElementsBetweenCubes(file, ft1, w1, Mesh3DCube::edge::edge14, Mesh3DCube::edge::edge58, false, true, elID, format);
-	elID = createElementsBetweenCubes(file, w1, fb1, Mesh3DCube::edge::edge14, Mesh3DCube::edge::edge58, false, true, elID, format);
+	elID = createElementsBetweenCubes(feaWriter, ft2, ft1, Mesh3DCube::edge::edge67, Mesh3DCube::edge::edge58, false, false, elID);
+	elID = createElementsBetweenCubes(feaWriter, fb2, fb1, Mesh3DCube::edge::edge23, Mesh3DCube::edge::edge14, true, true, elID);
+									  
+	elID = createElementsBetweenCubes(feaWriter, ft1, w1, Mesh3DCube::edge::edge14, Mesh3DCube::edge::edge58, false, true, elID);
+	elID = createElementsBetweenCubes(feaWriter, w1, fb1, Mesh3DCube::edge::edge14, Mesh3DCube::edge::edge58, false, true, elID);
 
 	std::vector<int> ebl, ebr, etr, etl;
 	ebl = ft2->getEdgeNodeIds(Mesh3DCube::edge::edge23);
 	etl = ft2->getNextEdge();
 	ebr = w1->getEdgeNodeIds(Mesh3DCube::edge::edge58);
 	etr = ft1->getEdgeNodeIds(Mesh3DCube::edge::edge14);
-	elID = writeElementRow(file, format, ebl, ebr, etr, etl, elID);
+	elID = feaWriter->writeElementRow(ebl, ebr, etr, etl, elID);
 
 	etl = fb2->getEdgeNodeIds(Mesh3DCube::edge::edge67, false);
 	ebl = fb2->getNextEdge();
 	ebr = fb1->getEdgeNodeIds(Mesh3DCube::edge::edge58);
 	etr = w1->getEdgeNodeIds(Mesh3DCube::edge::edge14);
-	elID = writeElementRow(file, format, ebl, ebr, etr, etl, elID);
+	elID = feaWriter->writeElementRow(ebl, ebr, etr, etl, elID);
 	
 }
 

@@ -2,7 +2,8 @@
 #include "HoledPlate3DMeshGenerator.h"
 
 
-HoledPlate3DMeshGenerator::HoledPlate3DMeshGenerator()
+HoledPlate3DMeshGenerator::HoledPlate3DMeshGenerator(const std::string& _filepath, format_type _format)
+	: MeshGenerator(_filepath, _format) 
 {
 	valid_parameters = { "h", "rx", "ry", "sx", "sy", "elsize" };
 	param_values	 = { &h,  &rx,  &ry,  &sx,  &sy,   &elsize };
@@ -29,10 +30,10 @@ int HoledPlate3DMeshGenerator::calculateInitalVariables(){
 	return 0;
 }
 
-void HoledPlate3DMeshGenerator::writeConnectionElements(std::ofstream& file) {
+void HoledPlate3DMeshGenerator::writeConnectionElements() {
 	Mesh3DTubular*		pipe = (Mesh3DTubular*)nodeRegions[0];
 	Mesh3DTubular*		plate = (Mesh3DTubular*)nodeRegions[1];
 
 	int elID = nodeRegions[1]->numberOfElements() + nodeRegions[1]->firstElementID();
-	createElementsBetweenTube(file, plate, pipe, elID, format);
+	createElementsBetweenTube(feaWriter, plate, pipe, elID);
 }

@@ -7,8 +7,8 @@ public:
 	Mesh2DTubular(const glm::dvec3& _pos, bool _completeRev);
 
 	virtual glm::dvec3 getCoords(int ir, int iy) = 0;
-	void writeNodes(std::ofstream& file, format_type format);
-	void writeElements(std::ofstream& file, format_type format);
+	void writeNodes(FEAwriter* feaWriter);
+	void writeElements(FEAwriter* feaWriter);
 	int numberOfNodes();
 	int numberOfElements();
 

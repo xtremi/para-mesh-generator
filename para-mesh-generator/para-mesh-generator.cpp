@@ -46,25 +46,25 @@ int main(int argc, char* argv[])
 	case mesh_type::BOX_3D: break;
 	case mesh_type::CIRCLE_2D: break;
 	case mesh_type::C_BEAM_3D: 
-		mg = new CBeam3DMeshGenerator();
+		mg = new CBeam3DMeshGenerator(input.outputPath, input.format);
 		break;	
 	case mesh_type::PLATE_2D: 
-		mg = new Plate2DMeshGenerator();
+		mg = new Plate2DMeshGenerator(input.outputPath, input.format);
 		break;
 	case mesh_type::I_BEAM_3D: 
-		mg = new IBeam3DMeshGenerator();
+		mg = new IBeam3DMeshGenerator(input.outputPath, input.format);
 		break;
 	case mesh_type::PIPE_BEAM_3D:
-		mg = new PipeBeam3DMeshGenerator();
+		mg = new PipeBeam3DMeshGenerator(input.outputPath, input.format);
 		break;
 	case mesh_type::CYLINDER_BEAM_3D:
-		mg = new CylinderBeam3DMeshGenerator();
+		mg = new CylinderBeam3DMeshGenerator(input.outputPath, input.format);
 		break;
 	case mesh_type::HOLED_PLATE_3D:
-		mg = new HoledPlate3DMeshGenerator();
+		mg = new HoledPlate3DMeshGenerator(input.outputPath, input.format);
 		break;
 	case mesh_type::PRIMITIVE:
-		mg = new PrimitiveMeshGenerator();
+		mg = new PrimitiveMeshGenerator(input.outputPath, input.format);
 	default:	
 		break;
 	}
@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
 		return err;
 	if (err = mg->generate())
 		return err;
-	if (err = mg->writeToFile(input.outputPath, input.format))
+	if (err = mg->writeToFile())
 		return err;
 
 

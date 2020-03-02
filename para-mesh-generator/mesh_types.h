@@ -10,7 +10,8 @@ enum class element_dim_type {
 enum class format_type {
 	ANSYS,
 	NASTRAN,
-	ABAQUS
+	ABAQUS,
+	VTK
 };
 
 enum class mesh_type { 

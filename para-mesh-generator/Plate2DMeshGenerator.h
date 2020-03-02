@@ -6,7 +6,7 @@ class Plate2DMeshGenerator :
 	public MeshGenerator
 {
 public:
-	Plate2DMeshGenerator();
+	Plate2DMeshGenerator(const std::string& _filepath, format_type _format);
 
 	int generate();
 private:
@@ -18,6 +18,6 @@ private:
 
 	int calculateInitalVariables();
 
-	void writeConnectionElements(std::ofstream& file);
+	void writeConnectionElements();
 };
 

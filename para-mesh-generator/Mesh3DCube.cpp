@@ -36,18 +36,18 @@ glm::dvec3 Mesh3DCube::getCoords(int ix, int iy, int iz) {
 
 
 
-void Mesh3DCube::writeNodes(std::ofstream& file, format_type format) {
+void Mesh3DCube::writeNodes(FEAwriter* feaWriter) {
 	int nodeID = nodeID1;
 	for (int iz = 0; iz < nnodes.z; iz++) {
 		for (int iy = 0; iy < nnodes.y; iy++) {
 			for (int ix = 0; ix < nnodes.x; ix++) {
-				writeNode(file, nodeID++, getCoords(ix, iy, iz), format);
+				feaWriter->writeNode(nodeID++, getCoords(ix, iy, iz));
 			}
 		}
 	}
 }
 
-void Mesh3DCube::writeElements(std::ofstream& file, format_type format) {
+void Mesh3DCube::writeElements(FEAwriter* feaWriter) {
 	int n[8];
 	int c = nodeID1;
 	int nNodesXYface = nnodes.x * nnodes.y;
@@ -67,7 +67,7 @@ void Mesh3DCube::writeElements(std::ofstream& file, format_type format) {
 				n[7] = n[6] - 1;
 
 				c++;
-				write8nodedHexa(file, elID++, n, format);
+				feaWriter->write8nodedHexa(elID++, n);
 
 				if (false && (elID > (3 * 16 * 5))) {
 					stop = true;
@@ -401,11 +401,10 @@ int Mesh3DCube::getCornerNodeId(corner corner_id) {
 
 
 int createElementsBetweenCubes(
-	std::ofstream& file,
+	FEAwriter* feaWriter,
 	Mesh3DCube* mc1, Mesh3DCube* mc2,
 	Mesh3DCube::edge edg1, Mesh3DCube::edge edg2,
-	bool dir1, bool dir2, int elStartID,
-	format_type format)
+	bool dir1, bool dir2, int elStartID)
 {
 	std::vector<int> edge1 = mc1->getEdgeNodeIds(edg1, dir1);
 	std::vector<int> edge2 = mc2->getEdgeNodeIds(edg2, dir2);
@@ -415,7 +414,7 @@ int createElementsBetweenCubes(
 	int elID = elStartID;
 	while ((nextEdge1.size() > 0) && (nextEdge2.size() > 0))
 	{
-		elID = writeElementRow(file, format, edge2, edge1, nextEdge1, nextEdge2, elID);
+		elID = feaWriter->writeElementRow(edge2, edge1, nextEdge1, nextEdge2, elID);
 
 		edge1 = nextEdge1;
 		edge2 = nextEdge2;

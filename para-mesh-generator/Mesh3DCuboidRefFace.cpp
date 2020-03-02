@@ -23,20 +23,20 @@ Mesh3DCuboidRefFace::Mesh3DCuboidRefFace(
 {}
 
 
-void Mesh3DCuboidRefFace::writeNodes(std::ofstream& file, format_type format){	
+void Mesh3DCuboidRefFace::writeNodes(FEAwriter* feaWriter){
 	glm::dvec3 coords(pos);
-	nodeID_endOfRefRows = writeNodeCuboidXZY(file, format, coords, glm::dvec3(elsizeRef, elsizeRef, elsizeRefZ), glm::ivec3(nnodesRef, refRows, nnodesRefZ), nodeID1);
+	nodeID_endOfRefRows = feaWriter->writeNodeCuboidXZY(coords, glm::dvec3(elsizeRef, elsizeRef, elsizeRefZ), glm::ivec3(nnodesRef, refRows, nnodesRefZ), nodeID1);
 	coords.y = (l_ref + elsizeRef * yfac);
-	nodeID_endOfRefinement = writeRefinementNodes(file, format, coords, nodeID_endOfRefRows);
+	nodeID_endOfRefinement = writeRefinementNodes(feaWriter, coords, nodeID_endOfRefRows);
 	coords.y = (l_ref + l_ref_to_norm + elsizeNormY);
-	writeNodeCuboidXZY(file, format, coords, glm::dvec3(elsizeNorm, elsizeNormY, elsizeNormZ), glm::ivec3(nnodesNorm, normRows, nnodesNormZ), nodeID_endOfRefinement);
+	feaWriter->writeNodeCuboidXZY(coords, glm::dvec3(elsizeNorm, elsizeNormY, elsizeNormZ), glm::ivec3(nnodesNorm, normRows, nnodesNormZ), nodeID_endOfRefinement);
 }
-void Mesh3DCuboidRefFace::writeElements(std::ofstream& file, format_type format) {
+void Mesh3DCuboidRefFace::writeElements(FEAwriter* feaWriter) {
 	int elementID = elementID1;
-	elementID = writeElementsCubeXZY(file, format, glm::ivec3(nnodesRef, refRows, nnodesRefZ), nodeID1, elementID);
-	elementID = writeRefinementElements(file, format, elementID, nodeID_endOfRefRows - nnodesRef * nnodesRefZ);
+	elementID = feaWriter->writeElementsCubeXZY(glm::ivec3(nnodesRef, refRows, nnodesRefZ), nodeID1, elementID);
+	elementID = writeRefinementElements(feaWriter, elementID, nodeID_endOfRefRows - nnodesRef * nnodesRefZ);
 	//adding a row of elements between refinement rows and norm rows:
-	elementID = writeElementsCubeXZY(file, format, glm::ivec3(nnodesNorm, normRows + 1, nnodesNormZ), nodeID_endOfRefinement - nnodesNorm*nnodesNormZ, elementID);
+	elementID = feaWriter->writeElementsCubeXZY(glm::ivec3(nnodesNorm, normRows + 1, nnodesNormZ), nodeID_endOfRefinement - nnodesNorm*nnodesNormZ, elementID);
 }
 
 int Mesh3DCuboidRefFace::numberOfNodes() { return 0; }

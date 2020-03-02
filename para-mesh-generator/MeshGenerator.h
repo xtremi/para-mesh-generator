@@ -4,33 +4,32 @@
 #include "string_utilities.h"
 #include <vector>
 #include "error_codes.h"
-//#include "FeaWrite.h"
 
 class MeshGenerator
 {
 public:
-	MeshGenerator();
+	MeshGenerator(const std::string& _filepath, format_type _format);
 	~MeshGenerator();
 	
 	virtual int generate() = 0;
 
-	int writeToFile(const std::string& _filepath, format_type _format, const std::string& _stlpath = "");
+	int writeToFile();
 	virtual int processInputParameters(const std::map<std::string, std::vector<std::string>>& parameters);
 
 protected:
 	std::string outpath;
-	std::string stlpath;
 	format_type format;
+	FEAwriter* feaWriter = NULL;
 	
 	std::vector<MeshPrimitive*>	nodeRegions;
 
 	std::vector<std::string>	valid_parameters;
 	std::vector<double*>		param_values;
 
-	void writeNodes(std::ofstream& file);
-	void writeElements(std::ofstream& file);
+	void writeNodes();
+	void writeElements();
 
-	virtual void writeConnectionElements(std::ofstream& file) = 0;
+	virtual void writeConnectionElements() = 0;
 };
 
 /*

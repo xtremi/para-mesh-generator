@@ -8,7 +8,7 @@ class PipeBeam3DMeshGenerator :
 	public MeshGenerator
 {
 public:
-	PipeBeam3DMeshGenerator();
+	PipeBeam3DMeshGenerator(const std::string& _filepath, format_type _format);
 	~PipeBeam3DMeshGenerator();
 
 	int generate();
@@ -21,7 +21,7 @@ private:
 
 	int calculateInitalVariables();
 
-	void writeConnectionElements(std::ofstream& file);
+	void writeConnectionElements();
 
 };
 

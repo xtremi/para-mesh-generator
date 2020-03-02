@@ -6,7 +6,7 @@ class CBeam3DMeshGenerator :
 	public MeshGenerator
 {
 public:
-	CBeam3DMeshGenerator();
+	CBeam3DMeshGenerator(const std::string& _filepath, format_type _format);
 	~CBeam3DMeshGenerator();
 
 	int generate();
@@ -26,6 +26,6 @@ private:
 
 	int calculateInitalVariables();
 
-	void writeConnectionElements(std::ofstream& file);
+	void writeConnectionElements();
 };
 

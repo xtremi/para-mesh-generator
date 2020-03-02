@@ -27,8 +27,7 @@ void MeshSideRefinement3D::normZelementSizeAndNumbersFromRefFactor(double length
 
 
 int MeshSideRefinement3D::writeRefinementNodes(
-	std::ofstream& file,
-	format_type format,
+	FEAwriter* feaWriter,
 	const glm::dvec3& spos,
 	int nodeIDstart
 )
@@ -48,7 +47,7 @@ int MeshSideRefinement3D::writeRefinementNodes(
 		nRefinements++;
 
 		//plane b:
-		nodeID = writeNodePlaneXZ(file, format, coords, 
+		nodeID = feaWriter->writeNodePlaneXZ(coords, 
 			glm::dvec2(currentElsizeX, currentElsizeZ), glm::ivec2(currentNodesX, currentNodesZ), nodeID);
 		
 		//row m1:
@@ -56,7 +55,7 @@ int MeshSideRefinement3D::writeRefinementNodes(
 		for (int i = 0; i < currentNodesX; i++) {
 			coords.x = (double)i*currentElsizeX;
 			if (i % 4)
-				nodeID = writeNodeRowZ(file, format, coords, currentElsizeZ, currentNodesZ, nodeID);
+				nodeID = feaWriter->writeNodeRowZ(coords, currentElsizeZ, currentNodesZ, nodeID);
 		}
 
 		//row m2:
@@ -67,7 +66,7 @@ int MeshSideRefinement3D::writeRefinementNodes(
 		currentNodesX = (nnodesRef - 1) / currentRefFactorX + 1;
 		currentElsizeX = currentRefFactorX * elsizeRef;
 
-		nodeID = writeNodePlaneXZ(file, format, coords, glm::dvec2(currentElsizeX, currentElsizeZ), glm::ivec2(currentNodesX, currentNodesZ), nodeID);
+		nodeID = feaWriter->writeNodePlaneXZ(coords, glm::dvec2(currentElsizeX, currentElsizeZ), glm::ivec2(currentNodesX, currentNodesZ), nodeID);
 
 		//row m3
 		coords.y += currentElsizeY * yfac;
@@ -76,7 +75,7 @@ int MeshSideRefinement3D::writeRefinementNodes(
 		for (int i = 0; i < currentNodesZ; i++) {
 			coords.z = (double)i*currentElsizeZ;
 			if (i % 4)
-				nodeID = writeNodeRowX(file, format, coords, currentElsizeX, currentNodesX, nodeID++);
+				nodeID = feaWriter->writeNodeRowX(coords, currentElsizeX, currentNodesX, nodeID++);
 		}
 		
 		//row t:
@@ -87,7 +86,7 @@ int MeshSideRefinement3D::writeRefinementNodes(
 		currentNodesZ = (nnodesRefZ - 1) / currentRefFactorZ + 1;
 		currentElsizeZ = currentRefFactorZ * elsizeRefZ;
 			
-		nodeID = writeNodePlaneXZ(file, format, coords,
+		nodeID = feaWriter->writeNodePlaneXZ(coords,
 			glm::dvec2(currentElsizeX, currentElsizeZ), glm::ivec2(currentNodesX, currentNodesZ), nodeID);
 		
 		currentElsizeY *= 2;
@@ -106,7 +105,7 @@ void MeshSideRefinement3D::calculateMeshSectionRefToNormLength()
 	}
 }
 
-int MeshSideRefinement3D::writeRefinementElements(std::ofstream& file, format_type format, int elementID1, int nodeID1)
+int MeshSideRefinement3D::writeRefinementElements(FEAwriter* feaWriter, int elementID1, int nodeID1)
 {
 	int currentRefFactor = 1;
 	int	currentNodesX = nnodesRef;
@@ -142,7 +141,7 @@ int MeshSideRefinement3D::writeRefinementElements(std::ofstream& file, format_ty
 		int firstNodeT  = firstNodeM3 + nnodesPlaneM3;
 
 		//elPlane B:
-		elID = writeElementsCubeXZY(file, format, glm::ivec3(currentNodesX, 2, currentNodesZ), firstNodePrevT, elID);
+		elID = feaWriter->writeElementsCubeXZY(glm::ivec3(currentNodesX, 2, currentNodesZ), firstNodePrevT, elID);
 
 		for (int iz = 0; iz < (currentNodesZ - 1); iz++) {
 			for (int i = 0; i < (currentNodesX - 1); i += 4) {
@@ -178,7 +177,7 @@ int MeshSideRefinement3D::writeRefinementElements(std::ofstream& file, format_ty
 				int n_el6[8] = { m1f[1], m1f[2], m1b[2], m1b[1],  m2f[1], m2f[2], m2b[2], m2b[1] }; elNodes.push_back(n_el6);
 
 				for (int i = 0; i < elNodes.size(); i++)
-					write8nodedHexa(file, elID++, elNodes[i], format);
+					feaWriter->write8nodedHexa(elID++, elNodes[i]);
 
 				//if (!cancel) { cancel = true; break; }
 
@@ -221,7 +220,7 @@ int MeshSideRefinement3D::writeRefinementElements(std::ofstream& file, format_ty
 				int n_el6[8] = { m3f[1], m3f[2], m3b[2], m3b[1],  tf[1], tf[2], tb[2], tb[1] }; elNodes.push_back(n_el6);
 
 				for (int i = 0; i < elNodes.size(); i++)
-					write8nodedHexa(file, elID++, elNodes[i], format);
+					feaWriter->write8nodedHexa(elID++, elNodes[i]);
 
 				
 			}

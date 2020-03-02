@@ -54,24 +54,24 @@ b0   x___x___x___x___x___x___x___x___x  row b (bot)
 
 */
 
-void Mesh2DPlateRefSide::writeNodes(std::ofstream& file, format_type format) {
+void Mesh2DPlateRefSide::writeNodes(FEAwriter* feaWriter) {
 	glm::dvec3 coords(pos);
-	nodeID_endOfRefRows = writeNodePlaneXY(file, format, coords , glm::dvec2(elsizeRef), glm::ivec2(nnodesRef, refRows), nodeID1);
+	nodeID_endOfRefRows = feaWriter->writeNodePlaneXY(coords , glm::dvec2(elsizeRef), glm::ivec2(nnodesRef, refRows), nodeID1);
 	coords.y = (l_ref + elsizeRef*yfac);
-	nodeID_endOfRefinement = writeRefinementNodes(file, format, coords, nodeID_endOfRefRows);
+	nodeID_endOfRefinement = writeRefinementNodes(feaWriter, coords, nodeID_endOfRefRows);
 	coords.y = (l_ref + l_ref_to_norm + elsizeNormY);
-	writeNodePlaneXY(file, format, coords, glm::dvec2(elsizeNorm, elsizeNormY), glm::ivec2(nnodesNorm, normRows), nodeID_endOfRefinement);
+	feaWriter->writeNodePlaneXY(coords, glm::dvec2(elsizeNorm, elsizeNormY), glm::ivec2(nnodesNorm, normRows), nodeID_endOfRefinement);
 }
 
-void Mesh2DPlateRefSide::writeElements(std::ofstream& file, format_type format) {
+void Mesh2DPlateRefSide::writeElements(FEAwriter* feaWriter) {
 	int nodeID = nodeID1;
-	int elID = writeElementsPlaneXY(file, format, glm::ivec2(nnodesRef, refRows), nodeID, elementID1);
+	int elID = feaWriter->writeElementsPlaneXY(glm::ivec2(nnodesRef, refRows), nodeID, elementID1);
 	
 	nodeID = nodeID_endOfRefRows - nnodesRef;
-	elID = writeRefinementElements(file, format, elID, nodeID);
+	elID = writeRefinementElements(feaWriter, elID, nodeID);
 
 	nodeID = nodeID_endOfRefinement - nnodesNorm;
-	writeElementsPlaneXY(file, format, glm::ivec2(nnodesNorm, normRows), nodeID, elID);
+	feaWriter->writeElementsPlaneXY(glm::ivec2(nnodesNorm, normRows), nodeID, elID);
 }
 
 int Mesh2DPlateRefSide::numberOfNodes() {

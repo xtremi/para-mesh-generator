@@ -7,18 +7,18 @@ Mesh3DTubular::Mesh3DTubular(const glm::dvec3& _pos, bool _completeRev)
 }
 
 
-void Mesh3DTubular::writeNodes(std::ofstream& file, format_type format){
+void Mesh3DTubular::writeNodes(FEAwriter* feaWriter){
 	int nodeID = nodeID1;
 	for (int iz = 0; iz < nnodes.z; iz++) {
 		for (int ix = 0; ix < nnodes.x; ix++) {
 			for (int iphi = 0; iphi < nnodes.y; iphi++) {
 				glm::dvec3 c = getCoords(ix, iphi, iz);
-				writeNode(file, nodeID++, c, format);
+				feaWriter->writeNode(nodeID++, c);
 			}
 		}
 	}
 }
-void Mesh3DTubular::writeElements(std::ofstream& file, format_type format) {
+void Mesh3DTubular::writeElements(FEAwriter* feaWriter) {
 	int n[8];
 	int c = nodeID1;
 	int nNodesPerLayer = nnodes.x * nnodes.y;
@@ -47,7 +47,7 @@ void Mesh3DTubular::writeElements(std::ofstream& file, format_type format) {
 				}
 
 				c++;
-				write8nodedHexa(file, elID++, n, format);
+				feaWriter->write8nodedHexa(elID++, n);
 
 				if (false && (elID > (1 + nNodesPerLayer - nnodes.y))) {
 					stop = true;
@@ -114,11 +114,10 @@ std::vector<int> Mesh3DTubular::getNextEdge() {
 
 
 int createElementsBetweenTube(
-	std::ofstream&	file,
+	FEAwriter* feaWriter,
 	Mesh3DTubular*		tubeOuter,
 	Mesh3DTubular*		tubeInner,
-	int				elStartID,
-	format_type		format)
+	int				elStartID)
 {
 	std::vector<int> edge1 = tubeOuter->getEdgeNodeIds(Mesh3DTubular::edge::edge_inner_z);
 	std::vector<int> edge2 = tubeInner->getEdgeNodeIds(Mesh3DTubular::edge::edge_outer_z);
@@ -128,7 +127,7 @@ int createElementsBetweenTube(
 	int elID = elStartID;
 	while ((nextEdge1.size() > 0) && (nextEdge2.size() > 0))
 	{
-		elID = writeElementRow(file, format, edge2, edge1, nextEdge1, nextEdge2, elID);
+		elID = feaWriter->writeElementRow(edge2, edge1, nextEdge1, nextEdge2, elID);
 
 		edge1 = nextEdge1;
 		edge2 = nextEdge2;
@@ -139,7 +138,7 @@ int createElementsBetweenTube(
 	if(tubeInner->hasCompleteRevolution() && tubeOuter->hasCompleteRevolution()){
 		nextEdge1 = tubeOuter->getEdgeNodeIds(Mesh3DTubular::edge::edge_inner_z);
 		nextEdge2 = tubeInner->getEdgeNodeIds(Mesh3DTubular::edge::edge_outer_z);
-		elID = writeElementRow(file, format, edge2, edge1, nextEdge1, nextEdge2, elID);
+		elID = feaWriter->writeElementRow(edge2, edge1, nextEdge1, nextEdge2, elID);
 	}
 	return elID;
 }

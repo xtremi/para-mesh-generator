@@ -7,8 +7,8 @@ public:
 	Mesh3DTubular(const glm::dvec3& _pos, bool _completeRev);
 
 	virtual glm::dvec3 getCoords(int ir, int iy, int iz) = 0;
-	void writeNodes(std::ofstream& file, format_type format);
-	void writeElements(std::ofstream& file, format_type format);
+	void writeNodes(FEAwriter* feaWriter);
+	void writeElements(FEAwriter* feaWriter);
 	int numberOfNodes();
 	int numberOfElements();
 	
@@ -43,8 +43,7 @@ protected:
 };
 
 int createElementsBetweenTube(
-	std::ofstream&	file,
+	FEAwriter*		feaWriter,
 	Mesh3DTubular*		tubeOuter, 
 	Mesh3DTubular*		tubeInner,
-	int				elStartID,
-	format_type		format);
+	int				elStartID);

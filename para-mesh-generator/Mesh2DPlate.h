@@ -11,8 +11,8 @@ public:
 	Mesh2DPlate(const glm::dvec3& _pos, const glm::dvec2& _length, double _amp, double _freq, const glm::dvec2& elsize);
 
 	glm::dvec3 getCoords(int ix, int iy);
-	void writeNodes(std::ofstream& file, format_type format);
-	void writeElements(std::ofstream& file, format_type format);
+	void writeNodes(FEAwriter* feaWriter);
+	void writeElements(FEAwriter* feaWriter);
 
 	int numberOfNodes();
 	int numberOfElements();

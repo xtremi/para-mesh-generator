@@ -1,77 +1,73 @@
 #include "MeshGenerator.h"
-MeshGenerator::MeshGenerator(){}
+MeshGenerator::MeshGenerator(const std::string& _filepath, format_type _format){	
+	outpath = _filepath;
+	format = _format;
+}
 MeshGenerator::~MeshGenerator(){}
 
 
-int MeshGenerator::writeToFile(const std::string& filepath, format_type _format, const std::string& _stlpath) {
+int MeshGenerator::writeToFile() {
 
 	std::ofstream file;
-	outpath = filepath;
-	format = _format;
-	stlpath = _stlpath;
-
 	file.open(outpath);
 	if (!file.is_open())
 		return ERR_CODE_UNABLE_TO_OPEN_FILE;
-	
-	
-	writeNodes(file);
-	writeElements(file);
-	
-	file.close();
+		
+	switch (format)
+	{
+	case format_type::ANSYS:
+		feaWriter = new AnsysFEAwriter(&file);
+		break;
+	case format_type::NASTRAN:
+		feaWriter = new NastranFEAwriter(&file);
+		break;
+	case format_type::ABAQUS:
+		feaWriter = new AbaqusFEAwriter(&file);
+		break;
+	case format_type::VTK:
+		feaWriter = new VTKFEAwriter(&file);
+		break;
+	default:
+		break;
+	}
 
+	writeNodes();
+	writeElements();	
+
+	file.close();
 	return 0;
 }
 
-void MeshGenerator::writeNodes(std::ofstream& file) {
+void MeshGenerator::writeNodes() {
 	int idstart = 1;
 	
-	if (format == format_type::ANSYS) {
-		file << "/prep7\n";
-	}
-
-	if (format == format_type::ABAQUS) {
-		file << "*Node\n";
-	}
+	feaWriter->writePreNodes();
 
 	std::cout << "Writing nodes..." << std::endl;
 	for (int i = 0; i < nodeRegions.size(); i++) {
 		nodeRegions[i]->setFirstNodeID(idstart);
-		nodeRegions[i]->writeNodes(file, format);
+		nodeRegions[i]->writeNodes(feaWriter);
 		std::cout << "\tNODE REGION " << i + 1 << ": node " << idstart;
 		idstart += nodeRegions[i]->numberOfNodes();
 		std::cout << " - " << idstart << std::endl;
 	}
 }
-void MeshGenerator::writeElements(std::ofstream& file) {
+void MeshGenerator::writeElements() {
 	int idstart = 1;
 	std::cout << "Writing elements..." << std::endl;
 	if (nodeRegions.size() == 0) return;
 
-	//Assume all noderegions are the same type of elements:
-	if (format == format_type::ABAQUS) {
-		if (nodeRegions[0]->el_dim() == element_dim_type::e2D)
-			file << "*Element, type=S4R\n";
-		else
-			file << "*Element, type=C3D8R\n";
-	}
-	else if (format == format_type::ANSYS) {
-		if (nodeRegions[0]->el_dim() == element_dim_type::e2D)
-			file << "et, 1, SHELL181\nsectype, 1, SHELL,, S3D\nsecnum, 1\ntype, 1\n";
-		else
-			file << "et, 1, SOLID185\ntype, 1\n";
-	}
-
+	feaWriter->writePreElements();
 
 	for (int i = 0; i < nodeRegions.size(); i++) {
 		nodeRegions[i]->setFirstElementID(idstart);
 		
-		nodeRegions[i]->writeElements(file, format);
+		nodeRegions[i]->writeElements(feaWriter);
 		std::cout << "\tELEMENT REGION " << i + 1 << ": element " << idstart;
 		idstart += nodeRegions[i]->numberOfElements();
 		std::cout << " - " << idstart << std::endl;
 	}
-	writeConnectionElements(file);
+	writeConnectionElements();
 }
 
 

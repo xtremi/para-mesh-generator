@@ -7,7 +7,7 @@ class HoledPlate3DMeshGenerator
 	: public MeshGenerator
 {
 public:
-	HoledPlate3DMeshGenerator();
+	HoledPlate3DMeshGenerator(const std::string& _filepath, format_type _format);
 
 	int generate();
 private:
@@ -20,6 +20,6 @@ private:
 
 	int calculateInitalVariables();
 
-	void writeConnectionElements(std::ofstream& file);
+	void writeConnectionElements();
 };
 

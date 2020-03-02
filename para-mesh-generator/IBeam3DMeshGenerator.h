@@ -5,7 +5,7 @@
 class IBeam3DMeshGenerator : public MeshGenerator
 {
 public:
-	IBeam3DMeshGenerator();
+	IBeam3DMeshGenerator(const std::string& _filepath, format_type _format);
 	~IBeam3DMeshGenerator();
 
 	int generate();
@@ -25,7 +25,7 @@ private:
 
 	int calculateInitalVariables();
 	
-	void writeConnectionElements(std::ofstream& file);
+	void writeConnectionElements();
 
 };
 
