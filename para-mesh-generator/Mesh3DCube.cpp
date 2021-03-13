@@ -7,14 +7,16 @@ Mesh3DCube::Mesh3DCube(const glm::dvec3& _pos, const glm::dvec3& _length)
 }
 
 Mesh3DCube::Mesh3DCube(const glm::dvec3& _pos, const glm::dvec3& _length, const glm::ivec3& _nnodes) 
-	: Mesh3DCube(_pos, _length) {
+	: Mesh3DCube(_pos, _length) 
+{
 	nnodes = _nnodes;
 
 	elsize = length / (glm::dvec3)(nnodes - glm::ivec3(1));
 }
 
 Mesh3DCube::Mesh3DCube(const glm::dvec3& _pos, const glm::dvec3& _length, const glm::dvec3& _elsize) 
-	: Mesh3DCube(_pos, _length) {
+	: Mesh3DCube(_pos, _length) 
+{
 	elsize = _elsize;
 
 	nnodes = (glm::ivec3)(length / elsize) + glm::ivec3(1);

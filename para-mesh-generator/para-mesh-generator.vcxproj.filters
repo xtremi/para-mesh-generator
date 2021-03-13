@@ -153,6 +153,15 @@
     <ClCompile Include="PrimitiveMeshGenerator.cpp">
       <Filter>Source Files\MeshGenerator</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh3DCubeS.cpp">
+      <Filter>Source Files\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangularGeometry.cpp">
+      <Filter>Source Files\Mesh\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeGeometry.cpp">
+      <Filter>Source Files\Mesh\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mesh_types.h">
@@ -268,6 +277,15 @@
     </ClInclude>
     <ClInclude Include="PrimitiveMeshGenerator.h">
       <Filter>Header Files\MeshGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3DCubeS.h">
+      <Filter>Header Files\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangularGeometry.h">
+      <Filter>Header Files\Mesh\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeGeometry.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

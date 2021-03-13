@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CBeam3DMeshGenerator.cpp" />
+    <ClCompile Include="CubeGeometry.cpp" />
     <ClCompile Include="CylinderBeam3DMeshGenerator.cpp" />
     <ClCompile Include="FeaWrite.cpp" />
     <ClCompile Include="Geometry.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Mesh2DPipe.cpp" />
     <ClCompile Include="Mesh2DTubular.cpp" />
     <ClCompile Include="Mesh3D.cpp" />
+    <ClCompile Include="Mesh3DCubeS.cpp" />
     <ClCompile Include="Mesh3DCuboid.cpp" />
     <ClCompile Include="Mesh3DCuboidRefFace.cpp" />
     <ClCompile Include="Mesh3DTubeRefFace.cpp" />
@@ -192,11 +194,13 @@
     <ClCompile Include="PipeGeometry3D.cpp" />
     <ClCompile Include="Plate2DMeshGenerator.cpp" />
     <ClCompile Include="PrimitiveMeshGenerator.cpp" />
+    <ClCompile Include="RectangularGeometry.cpp" />
     <ClCompile Include="string_utilities.cpp" />
     <ClCompile Include="Mesh3DTubular.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CBeam3DMeshGenerator.h" />
+    <ClInclude Include="CubeGeometry.h" />
     <ClInclude Include="CylinderBeam3DMeshGenerator.h" />
     <ClInclude Include="error_codes.h" />
     <ClInclude Include="FeaWrite.h" />
@@ -210,6 +214,7 @@
     <ClInclude Include="Mesh2DPipe.h" />
     <ClInclude Include="Mesh2DTubular.h" />
     <ClInclude Include="Mesh3D.h" />
+    <ClInclude Include="Mesh3DCubeS.h" />
     <ClInclude Include="Mesh3DCuboid.h" />
     <ClInclude Include="Mesh3DCuboidRefFace.h" />
     <ClInclude Include="Mesh3DTubeRefFace.h" />
@@ -229,6 +234,7 @@
     <ClInclude Include="PipeGeometry3D.h" />
     <ClInclude Include="Plate2DMeshGenerator.h" />
     <ClInclude Include="PrimitiveMeshGenerator.h" />
+    <ClInclude Include="RectangularGeometry.h" />
     <ClInclude Include="string_utilities.h" />
     <ClInclude Include="IBeam3DMeshGenerator.h" />
     <ClInclude Include="MeshGenerator.h" />

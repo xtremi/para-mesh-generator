@@ -179,6 +179,26 @@ int FEAwriter::writeNodePlaneXZ(
 	return nodeID;
 }
 
+int FEAwriter::writeNodePlaneYZ(
+	const glm::dvec3&	spos,
+	const glm::dvec2&	dyz,
+	const glm::ivec2&	nnodes,
+	int nodeIDstart)
+{
+	glm::dvec3 coords = spos;
+	int nodeID = nodeIDstart;
+	for (int iz = 0; iz < nnodes[1]; iz++)
+	{
+		for (int iy = 0; iy < nnodes[0]; iy++) {
+			writeNode(nodeID++, coords);
+			coords.y += dyz[0];
+		}
+		coords.z += dyz[1];
+		coords.x = spos.x;
+	}
+	return nodeID;
+}
+
 int FEAwriter::writeNodeCuboidXZY(
 	const glm::dvec3&	spos,
 	const glm::dvec3&	dxyz,

@@ -47,6 +47,12 @@ public:
 		const glm::ivec2&	nnodes,
 		int nodeIDstart);
 
+	int writeNodePlaneYZ(
+		const glm::dvec3&	spos,
+		const glm::dvec2&	dyz,
+		const glm::ivec2&	nnodes,
+		int nodeIDstart);
+
 	int writeNodeCuboidXZY(
 		const glm::dvec3&	spos,
 		const glm::dvec3&	dxy,

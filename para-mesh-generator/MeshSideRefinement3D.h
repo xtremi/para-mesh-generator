@@ -1,7 +1,7 @@
 #pragma once
-#include "MeshCircularRefinement.h"
+#include "MeshSideRefinement.h"
 class MeshSideRefinement3D :
-	public MeshCircularRefinement
+	public MeshSideRefinement
 {
 public:
 	MeshSideRefinement3D(const glm::dvec3& size, int _refRows, double _elSizeNorm, double	_elSizeRef);

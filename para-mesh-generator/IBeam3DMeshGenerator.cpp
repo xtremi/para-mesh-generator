@@ -36,7 +36,6 @@ int IBeam3DMeshGenerator::generate()
 
 	Mesh3DCube* flange_top_right = new Mesh3DCube(ft3 + dx, flt_sizeR - dx, glm::dvec3(elsize));
 
-
 	Mesh3DCube* flange_bot_left = new Mesh3DCube(fb1, flb_sizeL - dx, glm::dvec3(elsize));
 	Mesh3DCube* flange_bot_center = new Mesh3DCube(fb2, flb_sizeC - dy, glm::dvec3(elsize));
 	Mesh3DCube* flange_bot_right = new Mesh3DCube(fb3 + dx, flb_sizeR - dx, glm::dvec3(elsize));
@@ -53,7 +52,6 @@ int IBeam3DMeshGenerator::generate()
 
 
 /*
-
  ___________   _______   __________
 |  			| |	 FT2  |	|		   |   
 |	FT1		| |_______|	|	FT3	   |

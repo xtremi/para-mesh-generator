@@ -2,7 +2,7 @@
 
 
 MeshSideRefinement3D::MeshSideRefinement3D(const glm::dvec3& size, int _refRows, double _elSizeNorm, double	_elSizeRef)
-	: MeshCircularRefinement(glm::dvec2(size.x, size.y), _refRows, _elSizeNorm, _elSizeRef)
+	: MeshSideRefinement(glm::dvec2(size.x, size.y), _refRows, _elSizeNorm, _elSizeRef)
 {
 	elsizeRefZ = elsizeRef;
 	correctRefZElementSizeAndNumbers(size.z);
@@ -10,7 +10,7 @@ MeshSideRefinement3D::MeshSideRefinement3D(const glm::dvec3& size, int _refRows,
 	calculateMeshSectionLengths(size.y);
 }
 MeshSideRefinement3D::MeshSideRefinement3D(const glm::dvec3& size, int _refRows, double _elSizeNorm, int _refFactor)
-	: MeshCircularRefinement(glm::dvec2(size.x, size.y), _refRows, _elSizeNorm, _refFactor)
+	: MeshSideRefinement(glm::dvec2(size.x, size.y), _refRows, _elSizeNorm, _refFactor)
 {}
 
 void MeshSideRefinement3D::correctRefZElementSizeAndNumbers(double lengthz)
